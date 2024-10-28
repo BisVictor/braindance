@@ -44,7 +44,7 @@ def create_game(browser, privat_game=False):
     button_create_game_start.click()
 
 def enter_game(browser, nickname, role, skip=False):
-    browser.get(f'{GAME_URL}?hash=864') # временный адрес     
+    #browser.get(f'{GAME_URL}?hash=864') # временный адрес     
     nickname_form = wait_for_element(browser, By.CSS_SELECTOR, C_NICKNAME_FORM, timeout=10)
     nickname_form.click()
     browser.execute_script("arguments[0].value = '';", nickname_form)

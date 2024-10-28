@@ -15,7 +15,7 @@ X_TEXT_INPUT = '//*[@id="editor-container-new"]/div[1]'
 S_BTN_SAVE = 'body > div.game-bg > div > div.position_upper_right.panel > div > div:nth-child(3) > div > button.btn.btn-primary.btn-accent'
 
 def create_turn_picture(browser, header_text, image_url, text): # тип хода, хэдер, url картинки и текст
-    browser.get('https://test.braindance.space/game/view/8b1')    
+    #browser.get('https://test.braindance.space/game/view/8b1')    
     turn_button = wait_for_element(browser, By.CSS_SELECTOR, S_BTN_ADD_TURN, timeout=10)
     turn_button.click()   
     text_picture_button = wait_for_element(browser, By.CSS_SELECTOR, S_BTN_ADD_TEXT_PICTURE, timeout=5)
