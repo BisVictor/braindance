@@ -22,8 +22,8 @@ C_NICKNAME_FORM = 'body > div > div > div > div > div > form > div.flex.gap-3 > 
 S_VISITOR_MODE_BUTTON = 'div.flex.gap-3 > div:nth-child(2) > div > div'
 S_VISITOR_OPTION_ROLE = '.rc-virtual-list-holder-inner > div[title="Visitor"]'
 S_VISITOR_OPTION_ROLE2 = '.rc-virtual-list-holder-inner > div[title="Owner"]'
-C_SKIP_SPAN = '.game-dialog form .ant-checkbox-input'
-C_BTN_GO_TO_THE_GAME = 'body > div > div > div > div > div > form > div.flex.justify-end > button'
+S_SKIP_SPAN = '.game-dialog form .ant-checkbox-input'
+S_BTN_GO_TO_THE_GAME = 'body > div > div > div > div > div > form > div.flex.justify-end > button'
 
 
 def wait_for_element(browser, by, value, timeout=10):
@@ -60,7 +60,7 @@ def enter_game(browser, nickname, role, skip=False):
         option_role = wait_for_element(browser, By.CSS_SELECTOR, S_VISITOR_OPTION_ROLE2, timeout=5)
         option_role.click()
     if skip:
-        skip_span = browser.find_element(By.CSS_SELECTOR, C_SKIP_SPAN)
+        skip_span = browser.find_element(By.CSS_SELECTOR, S_SKIP_SPAN)
         skip_span.click()
-    game_button = wait_for_element(browser, By.CSS_SELECTOR, C_BTN_GO_TO_THE_GAME, timeout=5)
+    game_button = wait_for_element(browser, By.CSS_SELECTOR, S_BTN_GO_TO_THE_GAME, timeout=5)
     game_button.click()
