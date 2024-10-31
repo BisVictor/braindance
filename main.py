@@ -2,15 +2,20 @@
 
 from lobby import*
 from game import*
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+BASE_URL = os.getenv('BASE_URL')
 
 header_text = 'Selenium'
 image_url = 'https://www.selenium.dev/images/selenium_4_logo.png'
 text = 'Promo text. Selenium test'
 
-
 with webdriver.Chrome() as browser:
     browser.get(BASE_URL)
-    #create_game(browser, privat_game=True)
+    create_game(browser, privat_game=True, go_to_game=True)
     #enter_game(browser, 'victor', 'owner', skip=True)
     #browser.get('https://test.braindance.space/game/view/8b1')
     #create_turn_picture(browser, header_text, image_url, text)
