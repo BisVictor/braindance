@@ -58,14 +58,14 @@ def enter_game(browser, nickname, role, skip=False):
     browser.execute_script("arguments[0].value = '';", nickname_form)
     nickname_form.send_keys('%s' % nickname)
     if role == 'visitor':
-        button_mode = wait_for_element(browser, By.CSS_SELECTOR, S_VISITOR_MODE_BUTTON, timeout=5)
+        button_mode = wait_for_clickable(browser, By.CSS_SELECTOR, S_VISITOR_MODE_BUTTON, timeout=5)
         button_mode.click()        
-        option_role = wait_for_element(browser, By.CSS_SELECTOR, S_VISITOR_OPTION_ROLE, timeout=5)
+        option_role = wait_for_clickable(browser, By.CSS_SELECTOR, S_VISITOR_OPTION_ROLE, timeout=5)
         option_role.click()
     elif role == 'owner':
-        button_mode = wait_for_element(browser, By.CSS_SELECTOR, S_VISITOR_MODE_BUTTON, timeout=5)
+        button_mode = wait_for_clickable(browser, By.CSS_SELECTOR, S_VISITOR_MODE_BUTTON, timeout=5)
         button_mode.click()        
-        option_role = wait_for_element(browser, By.CSS_SELECTOR, S_VISITOR_OPTION_ROLE2, timeout=5)
+        option_role = wait_for_clickable(browser, By.CSS_SELECTOR, S_VISITOR_OPTION_ROLE2, timeout=5)
         option_role.click()
     if skip:
         skip_span = browser.find_element(By.CSS_SELECTOR, S_SKIP_SPAN)
