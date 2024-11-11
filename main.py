@@ -7,7 +7,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 from dotenv import load_dotenv
-from support_f import execute_steps
+from steps import execute_steps
 import os
 
 load_dotenv()
