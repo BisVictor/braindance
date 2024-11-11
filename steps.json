@@ -1,0 +1,42 @@
+[
+    {
+      "type": "create_game",
+      "payload": {
+        "name": "Autotest Game",
+        "private": true,
+        "go_to_play": true
+      }
+    },
+    {
+      "type": "enter_game",
+      "payload": {
+        "nickname": "Viktor",
+        "role": "owner",
+        "skip": false
+      }
+    },
+    {
+      "type": "create_turn",
+      "payload": {
+        "type": "picture",
+        "header_text": "Picture Turn 1",
+        "image_url": "https://www.selenium.dev/images/selenium_4_logo.png",
+        "text": "Picture text"
+      }
+    },
+    {
+      "type": "create_turn",
+      "payload": {
+        "type": "video",
+        "header_text": "Video Turn 1",
+        "video_url": "https://youtu.be/sLQLUed6izY?si=-zP4kRTx0QfJ1bUd",
+        "text": "Video text"
+      }
+    },
+    {
+      "type": "save_field"
+    },
+    {
+      "type": "go_to_lobby"
+    }
+  ]
