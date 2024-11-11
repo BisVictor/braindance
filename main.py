@@ -1,8 +1,13 @@
 # основной код, который запускает сценарии состоящие из функций
 
-from lobby import*
-from game import*
+import time
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
 from dotenv import load_dotenv
+from support_f import execute_steps
 import os
 
 load_dotenv()
@@ -26,3 +31,5 @@ with webdriver.Chrome() as browser:
     #save_field(browser)
     #get_lobby(browser)
     time.sleep(10)
+
+
