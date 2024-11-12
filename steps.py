@@ -1,5 +1,7 @@
 from game import *
 from lobby import *
+from game_panels import *
+from support_f import wait_for_removed
 import json
 
 def execute_steps(browser, filename):
@@ -32,9 +34,22 @@ def execute_steps(browser, filename):
             video_url_flag = payload.get('video_url', "")
             text_flag = payload.get('text', "")
             create_turn_video(browser, header_text=header_text_flag, video_url=video_url_flag, text=text_flag)
+        
+        elif step_type == "wait_for_removed":
+            seconds_sleep = payload.get('seconds', "")
+            wait_for_removed(seconds_sleep)
 
         elif step_type == "save_field":
             save_field(browser)
 
         elif step_type == "go_to_lobby":
             get_lobby(browser)
+        
+        elif step_type == "create_turn":
+            classes(browser)
+        
+        elif step_type == "info":
+            info(browser)
+
+        elif step_type == "minimap":
+            minimap(browser)

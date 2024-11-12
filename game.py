@@ -44,11 +44,11 @@ def create_turn_picture(browser, header_text, image_url, text): # тип ход�
     save_button = wait_for_clickable(browser, By.CSS_SELECTOR, S_BTN_SAVE, 10)
     save_button.click()    
    
-def create_turn_video(browser, header_text, video_url, text):    
+def create_turn_video(browser, header_text, video_url, text):
     turn_button = wait_for_clickable(browser, By.CSS_SELECTOR, S_BTN_ADD_TURN, timeout=10)     
-    turn_button.click()   
+    turn_button.click() 
     text_picture_button = wait_for_clickable(browser, By.CSS_SELECTOR, S_BTN_ADD_TEXT_PICTURE, timeout=5)     
-    text_picture_button.click()     
+    text_picture_button.click() 
     text_video_button = wait_for_clickable(browser, By.XPATH, X_BTN_ADD_TEXT_VIDEO, timeout=5)     
     text_video_button.click()     
     header_input = browser.find_element(By.CSS_SELECTOR, S_HEADER_INPUT)     

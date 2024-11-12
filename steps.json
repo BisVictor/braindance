@@ -25,6 +25,12 @@
       }
     },
     {
+      "type": "wait_for_removed",
+      "payload": {
+        "seconds": 3
+      }
+    },
+    {
       "type": "create_turn",
       "payload": {
         "type": "video",
@@ -37,6 +43,24 @@
       "type": "save_field"
     },
     {
+      "type": "classes"
+    },
+    {
+      "type": "classes"
+    },
+    {
+      "type": "info"
+    },
+    {
+      "type": "info"
+    },
+    {
+      "type": "minimap"
+    },
+    {
+      "type": "minimap"
+    },
+    {
       "type": "go_to_lobby"
-    }
+    }   
   ]
