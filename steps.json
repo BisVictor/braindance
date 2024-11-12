@@ -49,16 +49,34 @@
       "type": "classes"
     },
     {
+      "type": "wait_for_removed",
+      "payload": {
+        "seconds": 1
+      }
+    },
+    {
       "type": "info"
     },
     {
       "type": "info"
+    },
+    {
+      "type": "wait_for_removed",
+      "payload": {
+        "seconds": 1
+      }
     },
     {
       "type": "minimap"
     },
     {
       "type": "minimap"
+    },
+    {
+      "type": "wait_for_removed",
+      "payload": {
+        "seconds": 1
+      }
     },
     {
       "type": "go_to_lobby"

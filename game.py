@@ -27,7 +27,7 @@ S_BTN_LOBBY = 'body > div.game-bg > div > div.position_bottom_right.actions.pane
 
 def create_turn_picture(browser, header_text, image_url, text): # тип хода, хэдер, url картинки и текст
     #browser.get('https://test.braindance.space/game/view/8b1')
-    browser.set_window_size(1200, 800)    
+    #browser.set_window_size(1200, 800)    
     turn_button = wait_for_element(browser, By.CSS_SELECTOR, S_BTN_ADD_TURN, timeout=10)
     turn_button.click()   
     #text_picture_button = wait_for_element(browser, By.CSS_SELECTOR, S_BTN_ADD_TEXT_PICTURE, timeout=5)
