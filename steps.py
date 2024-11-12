@@ -26,7 +26,7 @@ def execute_steps(browser, filename):
             image_url_flag = payload.get('image_url', "")
             text_flag = payload.get('text', "")
             create_turn_picture(browser, header_text=header_text_flag, image_url=image_url_flag, text=text_flag)
-
+          
         elif step_type == "create_turn" and payload.get('type') == "video":
             header_text_flag = payload.get('header_text', "")
             video_url_flag = payload.get('video_url', "")

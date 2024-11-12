@@ -10,8 +10,12 @@ from support_f import wait_for_clickable
 
 
 S_BTN_ADD_TURN = 'body > div.game-bg > div > div.position_bottom_right.actions.panel > button:nth-child(1)'
-S_BTN_ADD_TEXT_PICTURE = r'body > div.game-bg > div > div.position_upper_right.panel > div > div:nth-child(1) > div:nth-child(1) > div.w-1/6 > button'
+S_BTN_ADD_TEXT_PICTURE = r'body > div.game-bg > div > div.position_upper_right.panel > div > div:nth-child(1) > div:nth-child(1) > div.w-1\/6 > button'
+#S_BTN_ADD_TEXT_PICTURE = r'body > div.game-bg > div > div.position_upper_right.panel > div > div:nth-child(1) > div:nth-child(1) > div.w-1/6 > button'
 #S_BTN_ADD_TEXT_PICTURE2 = 'body > div.game-bg > div > div.position_upper_right.panel > div > div:nth-child(1) > div:nth-child(1) > div.w-1\/6 > button'
+X_BTN_ADD_TEXT_PICTURE = '/html/body/div[3]/div/div[2]/div/div[1]/div[1]/div[1]/button'
+
+
 S_HEADER_INPUT = 'input[placeholder="Header:"]'
 S_IMAGE_URL_INPUT = 'body > div.game-bg > div > div.position_upper_right.panel > div > div:nth-child(1) > div.row.image-url-row.mb-2 > div > input'
 X_TEXT_INPUT = '//*[@id="editor-container-new"]/div[1]'
@@ -42,7 +46,7 @@ def create_turn_picture(browser, header_text, image_url, text): # тип ход�
    
 def create_turn_video(browser, header_text, video_url, text):    
     turn_button = wait_for_clickable(browser, By.CSS_SELECTOR, S_BTN_ADD_TURN, timeout=10)     
-    turn_button.click()     
+    turn_button.click()   
     text_picture_button = wait_for_clickable(browser, By.CSS_SELECTOR, S_BTN_ADD_TEXT_PICTURE, timeout=5)     
     text_picture_button.click()     
     text_video_button = wait_for_clickable(browser, By.XPATH, X_BTN_ADD_TEXT_VIDEO, timeout=5)     
