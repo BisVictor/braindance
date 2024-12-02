@@ -3,11 +3,17 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+from selenium.webdriver.common.keys import Keys
+import time
+
 from support_f import wait_for_clickable
+from support_f import wait_for_element
 
 S_BTN_CLASSES = 'body > div.game-bg > div > div.position_bottom_right.actions.panel > button:nth-child(3)'
 S_BTN_INFO = 'body > div.game-bg > div > div.position_bottom_right.actions.panel > button:nth-child(4)'
 S_BTN_MINIMAP = 'body > div.game-bg > div > div.position_bottom_right.actions.panel > button:nth-child(5)'
+
+
 
 
 def classes(browser):

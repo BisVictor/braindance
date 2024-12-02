@@ -4,6 +4,8 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.keys import Keys
+
 
 from support_f import wait_for_element
 from support_f import wait_for_clickable
@@ -24,6 +26,13 @@ X_BTN_ADD_TEXT_VIDEO = '/html/body/div[3]/div/ul/li[2]'
 S_VIDEO_URL_INPUT = 'body > div.game-bg > div > div.position_upper_right.panel > div > div:nth-child(1) > div.row.video-url-row.mb-2 > div > input'
 S_BTN_SAVE_FIELD = 'body > div.game-bg > div > div.position_bottom_right.actions.panel > button:nth-child(2)'
 S_BTN_LOBBY = 'body > div.game-bg > div > div.position_bottom_right.actions.panel > button:nth-child(6)'
+
+#для проверки открытия окна classes
+S_BTN_CLASSES_BTN_ADD = 'body > div.game-bg > div > div.position_upper_left.panel > div > form > button'
+#для проверки открытия окна info
+S_BTN_INFO_ENTER_GAME = 'body > div.game-bg > div > div.position_upper_center.panel > div > table > tbody > tr:nth-child(6) > td:nth-child(2) > form > div:nth-child(3) > button'
+#для проверки открытия окна minimap
+S_BTN_MINIMAP_MAP_ICON = 'body > div.game-bg > div > div.position_bottom_left.panel-minimap-styles.panel > div > div.percent-map-wrap-holder > div > div.map-icon > svg'
 
 def create_turn_picture(browser, header_text, image_url, text): # тип хода, хэдер, url картинки и текст
     #browser.get('https://test.braindance.space/game/view/8b1')
@@ -71,4 +80,24 @@ def save_field(browser):
 def get_lobby(browser):
     lobby_button = wait_for_element(browser, By.CSS_SELECTOR, S_BTN_LOBBY, timeout=5)
     lobby_button.click()   
+
+def open_modal(browser, btn_selector, modal_selector):    
+    btn = wait_for_clickable(browser, By.CSS_SELECTOR, btn_selector, timeout=10)
+    btn.click() 
+    time.sleep(1) 
+    modal = wait_for_element(browser, By.CSS_SELECTOR, modal_selector, timeout=10)
+    if modal.is_displayed():
+        print("Модальное окно открылось. Все ОК.")
+    else:
+        raise Exception("Модальное окно НЕ открылось")
+
+def close_modal(browser, btn_selector, modal_selector):
+    btn = wait_for_clickable(browser, By.CSS_SELECTOR, btn_selector, timeout=10)
+    btn.click()    
+    time.sleep(1)  
+    try:
+        WebDriverWait(browser, 10).until(EC.invisibility_of_element_located((By.CSS_SELECTOR, modal_selector)))
+        print("Модальное окно закрыто. Все ОК.")
+    except TimeoutException:
+        raise Exception("Модальное окно НЕ закрыто")
 

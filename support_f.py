@@ -12,5 +12,5 @@ def wait_for_clickable(browser, by, value, timeout=10):
 
 def wait_for_removed(seconds):
      time.sleep(seconds)
-     
+
 

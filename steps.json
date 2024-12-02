@@ -43,10 +43,34 @@
       "type": "save_field"
     },
     {
-      "type": "classes"
+      "type": "open_panel",
+      "payload": {
+        "modal": "classes"
+      }
     },
     {
-      "type": "classes"
+      "type": "close_panel",
+      "payload": {
+        "modal": "classes"
+      }
+    },
+    {
+      "type": "open_panel",
+      "payload": {
+        "modal": "info"
+      }
+    },     
+    {
+      "type": "close_panel",
+      "payload": {
+        "modal": "info"
+      }
+    },
+    {
+      "type": "close_panel",
+      "payload": {
+        "modal": "minimap"
+      }
     },
     {
       "type": "wait_for_removed",
@@ -55,30 +79,9 @@
       }
     },
     {
-      "type": "info"
-    },
-    {
-      "type": "info"
-    },
-    {
-      "type": "wait_for_removed",
+      "type": "open_panel",
       "payload": {
-        "seconds": 1
+        "modal": "go_to_lobby"
       }
-    },
-    {
-      "type": "minimap"
-    },
-    {
-      "type": "minimap"
-    },
-    {
-      "type": "wait_for_removed",
-      "payload": {
-        "seconds": 1
-      }
-    },
-    {
-      "type": "go_to_lobby"
-    }   
+    }    
   ]
