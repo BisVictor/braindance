@@ -27,3 +27,23 @@ def info(browser):
 def minimap(browser):
     minimap_button = wait_for_clickable(browser, By.CSS_SELECTOR, S_BTN_MINIMAP, timeout=10)
     minimap_button.click()
+
+def open_modal(browser, btn_selector, modal_selector, modal_name):    
+    btn = wait_for_clickable(browser, By.CSS_SELECTOR, btn_selector, timeout=10)
+    btn.click() 
+    time.sleep(1) 
+    modal = wait_for_element(browser, By.CSS_SELECTOR, modal_selector, timeout=10)
+    if modal.is_displayed():
+        print(f"Модальное окно {modal_name} открылось. Все ОК.")
+    else:
+        raise Exception(f"Модальное окно {modal_name}  НЕ открылось")
+
+def close_modal(browser, btn_selector, modal_selector, modal_name):   
+    btn = wait_for_clickable(browser, By.CSS_SELECTOR, btn_selector, timeout=10)
+    btn.click()    
+    time.sleep(1)  
+    try:
+        WebDriverWait(browser, 10).until(EC.invisibility_of_element_located((By.CSS_SELECTOR, modal_selector)))
+        print(f"Модальное окно {modal_name} закрыто. Все ОК.")
+    except TimeoutException:
+        raise Exception(f"Модальное окно {modal_name} НЕ закрыто")

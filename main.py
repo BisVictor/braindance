@@ -17,10 +17,10 @@ load_dotenv()
 
 BASE_URL = os.getenv('BASE_URL')
 
-header_text = 'Selenium'
-image_url = 'https://www.selenium.dev/images/selenium_4_logo.png'
-video_url = 'https://youtu.be/sLQLUed6izY?si=-zP4kRTx0QfJ1bUd'
-text = 'Promo text. Selenium test'
+#header_text = 'Selenium'
+#image_url = 'https://www.selenium.dev/images/selenium_4_logo.png'
+#video_url = 'https://youtu.be/sLQLUed6izY?si=-zP4kRTx0QfJ1bUd'
+#text = 'Promo text. Selenium test'
 
 with webdriver.Chrome() as browser:
     browser.get(BASE_URL)

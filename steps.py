@@ -26,18 +26,24 @@ def execute_steps(browser, filename):
                 enter_game(browser, nickname=nick_name_json, role=role_flag, skip=skip_flag)
             
             case "create_turn":
-                if payload.get('type') == "picture":
-                    header_text_flag = payload.get('header_text', "")
-                    image_url_flag = payload.get('image_url', "")
-                    text_flag = payload.get('text', "")
-                    create_turn_picture(browser, header_text=header_text_flag, image_url=image_url_flag, text=text_flag)
+                turn_type = payload.get('type')
+                if turn_type == "picture":
+                    data = payload.get('data', {})
+                    header_text_flag = data.get('header_text', "")
+                    url_flag = data.get('image_url', "")
+                    text_flag = data.get('text', "")
+                    create_turn(browser, turn_type, header_text=header_text_flag, url=url_flag, text=text_flag)
 
-                elif payload.get('type') == "video":
-                    header_text_flag = payload.get('header_text', "")
-                    video_url_flag = payload.get('video_url', "")
-                    text_flag = payload.get('text', "")
-                    create_turn_video(browser, header_text=header_text_flag, video_url=video_url_flag, text=text_flag)
-            
+                elif turn_type == "video":
+                    data = payload.get('data', {})
+                    header_text_flag = data.get('header_text', "")
+                    url_flag = data.get('video_url', "")
+                    text_flag = data.get('text', "")
+                    create_turn(browser, turn_type, header_text=header_text_flag, url=url_flag, text=text_flag)
+
+                else:
+                    raise ValueError(f"Unexpected turn_type: {turn_type}")
+                         
             case "wait_for_removed":
                 seconds_sleep = payload.get('seconds', "")
                 wait_for_removed(seconds_sleep)
@@ -50,28 +56,26 @@ def execute_steps(browser, filename):
                 modal = payload.get('modal', "")
                 match modal:
                     case "classes":
-                        open_modal(browser, S_BTN_CLASSES, S_BTN_CLASSES_BTN_ADD)
+                        open_modal(browser, S_BTN_CLASSES, S_BTN_CLASSES_BTN_ADD, modal)
                     case "info":
-                        open_modal(browser, S_BTN_INFO, S_BTN_INFO_ENTER_GAME)
+                        open_modal(browser, S_BTN_INFO, S_BTN_INFO_ENTER_GAME, modal)
                     case "minimap":
-                        open_modal(browser, S_BTN_MINIMAP, S_BTN_MINIMAP_MAP_ICON)
+                        open_modal(browser, S_BTN_MINIMAP, S_BTN_MINIMAP_MAP_ICON, modal)
                     case "go_to_lobby":
                         get_lobby(browser)
                     case _:
-                        raise ValueError(f"Unexpected step_type: {step_type}")
+                        raise ValueError(f"Unexpected step_type: {modal}")
                     
             case "close_panel":
                 modal = payload.get('modal', "")
                 match modal:
                     case "classes":
-                        close_modal(browser, S_BTN_CLASSES, S_BTN_CLASSES_BTN_ADD)
+                        close_modal(browser, S_BTN_CLASSES, S_BTN_CLASSES_BTN_ADD, modal)
                     case "info":
-                        close_modal(browser, S_BTN_INFO, S_BTN_INFO_ENTER_GAME)
+                        close_modal(browser, S_BTN_INFO, S_BTN_INFO_ENTER_GAME, modal)
                     case "minimap":
-                        close_modal(browser, S_BTN_MINIMAP, S_BTN_MINIMAP_MAP_ICON)
-                    
-                    
+                        close_modal(browser, S_BTN_MINIMAP, S_BTN_MINIMAP_MAP_ICON, modal)        
                     case _:
-                        raise ValueError(f"Unexpected step_type: {step_type}")
+                        raise ValueError(f"Unexpected step_type: {modal}")
             case _:
                 raise ValueError(f"Unexpected step_type: {step_type}")
