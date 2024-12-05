@@ -53,29 +53,17 @@ def execute_steps(browser, filename):
                 save_field(browser)
             
             case "open_panel":
-                modal = payload.get('modal', "")
-                match modal:
-                    case "classes":
-                        open_modal(browser, S_BTN_CLASSES, S_BTN_CLASSES_BTN_ADD, modal)
-                    case "info":
-                        open_modal(browser, S_BTN_INFO, S_BTN_INFO_ENTER_GAME, modal)
-                    case "minimap":
-                        open_modal(browser, S_BTN_MINIMAP, S_BTN_MINIMAP_MAP_ICON, modal)
-                    case "go_to_lobby":
-                        get_lobby(browser)
-                    case _:
-                        raise ValueError(f"Unexpected step_type: {modal}")
+                modal = payload.get('modal', "")           
+                if modal in panel_settings:
+                    open_modal(browser, *panel_settings[modal], modal)
+                elif modal == "go_to_lobby":
+                    get_lobby(browser)
+                else:
+                    raise ValueError(f"Unexpected step_type: {modal}")
                     
             case "close_panel":
-                modal = payload.get('modal', "")
-                match modal:
-                    case "classes":
-                        close_modal(browser, S_BTN_CLASSES, S_BTN_CLASSES_BTN_ADD, modal)
-                    case "info":
-                        close_modal(browser, S_BTN_INFO, S_BTN_INFO_ENTER_GAME, modal)
-                    case "minimap":
-                        close_modal(browser, S_BTN_MINIMAP, S_BTN_MINIMAP_MAP_ICON, modal)        
-                    case _:
-                        raise ValueError(f"Unexpected step_type: {modal}")
-            case _:
-                raise ValueError(f"Unexpected step_type: {step_type}")
+                modal = payload.get('modal', "")           
+                if modal in panel_settings:
+                    close_modal(browser, *panel_settings[modal], modal)
+                else:
+                    raise ValueError(f"Unexpected step_type: {modal}")

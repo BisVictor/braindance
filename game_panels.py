@@ -9,11 +9,6 @@ import time
 from support_f import wait_for_clickable
 from support_f import wait_for_element
 
-S_BTN_CLASSES = 'body > div.game-bg > div > div.position_bottom_right.actions.panel > button:nth-child(3)'
-S_BTN_INFO = 'body > div.game-bg > div > div.position_bottom_right.actions.panel > button:nth-child(4)'
-S_BTN_MINIMAP = 'body > div.game-bg > div > div.position_bottom_right.actions.panel > button:nth-child(5)'
-
-
 def open_modal(browser, btn_selector, modal_selector, modal_name):    
     btn = wait_for_clickable(browser, By.CSS_SELECTOR, btn_selector, timeout=10)
     btn.click() 

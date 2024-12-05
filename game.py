@@ -27,12 +27,23 @@ S_VIDEO_URL_INPUT = 'body > div.game-bg > div > div.position_upper_right.panel >
 S_BTN_SAVE_FIELD = 'body > div.game-bg > div > div.position_bottom_right.actions.panel > button:nth-child(2)'
 S_BTN_LOBBY = 'body > div.game-bg > div > div.position_bottom_right.actions.panel > button:nth-child(6)'
 
+#кнопки панели
+S_BTN_CLASSES = 'body > div.game-bg > div > div.position_bottom_right.actions.panel > button:nth-child(3)'
+S_BTN_INFO = 'body > div.game-bg > div > div.position_bottom_right.actions.panel > button:nth-child(4)'
+S_BTN_MINIMAP = 'body > div.game-bg > div > div.position_bottom_right.actions.panel > button:nth-child(5)'
+
 #для проверки открытия окна classes
 S_BTN_CLASSES_BTN_ADD = 'body > div.game-bg > div > div.position_upper_left.panel > div > form > button'
 #для проверки открытия окна info
 S_BTN_INFO_ENTER_GAME = 'body > div.game-bg > div > div.position_upper_center.panel > div > table > tbody > tr:nth-child(6) > td:nth-child(2) > form > div:nth-child(3) > button'
 #для проверки открытия окна minimap
 S_BTN_MINIMAP_MAP_ICON = 'body > div.game-bg > div > div.position_bottom_left.panel-minimap-styles.panel > div > div.percent-map-wrap-holder > div > div.map-icon > svg'
+
+panel_settings = {
+    "classes": [S_BTN_CLASSES, S_BTN_CLASSES_BTN_ADD],
+    "info": [S_BTN_INFO, S_BTN_INFO_ENTER_GAME],
+    "minimap": [S_BTN_MINIMAP, S_BTN_MINIMAP_MAP_ICON],
+}
 
 def create_turn(browser, type, header_text, text, url=None): # тип хода, хэдер, url картинки/видео и текст  
     turn_button = wait_for_clickable(browser, By.CSS_SELECTOR, S_BTN_ADD_TURN, timeout=10)     

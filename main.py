@@ -35,6 +35,6 @@ with webdriver.Chrome() as browser:
     #create_turn_video(browser, header_text, video_url, text)
     #save_field(browser)
     #get_lobby(browser)
-    time.sleep(30)
+    time.sleep(10)
 
 
