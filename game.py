@@ -34,48 +34,29 @@ S_BTN_INFO_ENTER_GAME = 'body > div.game-bg > div > div.position_upper_center.pa
 #для проверки открытия окна minimap
 S_BTN_MINIMAP_MAP_ICON = 'body > div.game-bg > div > div.position_bottom_left.panel-minimap-styles.panel > div > div.percent-map-wrap-holder > div > div.map-icon > svg'
 
-def create_turn_video(browser, header_text, text, url=None):
+def create_turn(browser, type, header_text, text, url=None): # тип хода, хэдер, url картинки/видео и текст  
     turn_button = wait_for_clickable(browser, By.CSS_SELECTOR, S_BTN_ADD_TURN, timeout=10)     
     turn_button.click() 
     text_picture_button = wait_for_clickable(browser, By.CSS_SELECTOR, S_BTN_ADD_TEXT_PICTURE, timeout=5)     
-    text_picture_button.click() 
-    text_video_button = wait_for_clickable(browser, By.XPATH, X_BTN_ADD_TEXT_VIDEO, timeout=5)     
-    text_video_button.click()     
-    header_input = browser.find_element(By.CSS_SELECTOR, S_HEADER_INPUT)     
-    header_input.click()     
-    header_input.send_keys(header_text)    
-    image_url_input = wait_for_element(browser, By.CSS_SELECTOR, S_VIDEO_URL_INPUT, timeout=5)     
-    image_url_input.click()     
-    image_url_input.send_keys(url)     
+    text_picture_button.click()   
+    if type == "picture":
+        image_url_input = browser.find_element(By.CSS_SELECTOR, S_IMAGE_URL_INPUT)
+        image_url_input.click()
+        image_url_input.send_keys(url)               
+    elif type == "video":
+        text_video_button = wait_for_clickable(browser, By.XPATH, X_BTN_ADD_TEXT_VIDEO, timeout=10)     
+        text_video_button.click()
+        video_url_input = wait_for_element(browser, By.CSS_SELECTOR, S_VIDEO_URL_INPUT, timeout=10)     
+        video_url_input.click()     
+        video_url_input.send_keys(url)       
+    header_input = wait_for_element(browser, By.CSS_SELECTOR, S_HEADER_INPUT, timeout=5)
+    header_input.click()
+    header_input.send_keys(header_text)
     text_input = browser.find_element(By.XPATH, X_TEXT_INPUT)
     text_input.click()
     text_input.send_keys(text)
     save_button = wait_for_clickable(browser, By.CSS_SELECTOR, S_BTN_SAVE, timeout=5)
     save_button.click()
-
-def create_turn_picture(browser, header_text, url, text):
-    header_input = wait_for_element(browser, By.CSS_SELECTOR, S_HEADER_INPUT, timeout=5)
-    header_input.click()
-    header_input.send_keys(header_text)
-    image_url_input = browser.find_element(By.CSS_SELECTOR, S_IMAGE_URL_INPUT)
-    image_url_input.click()
-    image_url_input.send_keys(url)
-    text_input = browser.find_element(By.XPATH, X_TEXT_INPUT)
-    text_input.click()
-    text_input.send_keys(text)
-    save_button = wait_for_clickable(browser, By.CSS_SELECTOR, S_BTN_SAVE, 10)
-    save_button.click()   
-
-
-def create_turn(browser, type, header_text, text, url=None): # тип хода, хэдер, url картинки/видео и текст  
-    turn_button = wait_for_clickable(browser, By.CSS_SELECTOR, S_BTN_ADD_TURN, timeout=10)
-    turn_button.click()   
-    if type == "picture":
-        create_turn_picture(browser, header_text, url, text)         
-    elif type == "video":
-        create_turn_video(browser, header_text, url, text)
-    else:
-        print(f"Unexpected step_type: {type}")
    
 
 def save_field(browser):   

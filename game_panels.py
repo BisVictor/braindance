@@ -14,8 +14,6 @@ S_BTN_INFO = 'body > div.game-bg > div > div.position_bottom_right.actions.panel
 S_BTN_MINIMAP = 'body > div.game-bg > div > div.position_bottom_right.actions.panel > button:nth-child(5)'
 
 
-
-
 def classes(browser):
     classes_button = wait_for_clickable(browser, By.CSS_SELECTOR, S_BTN_CLASSES, timeout=10)
     classes_button.click()
