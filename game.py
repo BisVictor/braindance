@@ -67,8 +67,7 @@ def create_turn(browser, type, header_text, text, url=None, sleep_after_create_t
     text_input = browser.find_element(By.XPATH, X_TEXT_INPUT)
     text_input.click()
     text_input.send_keys(text)
-    save_button = wait_for_clickable(browser, By.CSS_SELECTOR, S_BTN_SAVE, timeout=5)    
-    time.sleep(sleep_after_create_turn)
+    save_button = wait_for_clickable(browser, By.CSS_SELECTOR, S_BTN_SAVE, timeout=5)        
     save_button.click()
     time.sleep(sleep_after_create_turn)
     
