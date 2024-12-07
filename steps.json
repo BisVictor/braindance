@@ -14,13 +14,7 @@
         "role": "owner",
         "skip": false
       }
-    },
-    {
-      "type": "wait_for_removed",
-      "payload": {
-        "seconds": 2
-      }
-    },
+    },   
     {
       "type": "create_turn",
       "payload": {
@@ -31,11 +25,24 @@
           "text": "Picture text"
         }
       }
+    },  
+    {
+      "type": "drag_and_drop_screen",
+      "payload": {
+        "start": {
+          "x": 700,
+          "y": 100
+        },
+        "end": {
+          "x": 50,
+          "y": 100
+        }
+      }
     },
     {
-      "type": "wait_for_removed",
+      "type": "close_panel",
       "payload": {
-        "seconds": 3
+        "modal": "minimap"
       }
     },
     {
@@ -49,6 +56,19 @@
         }
       }
     },   
+    {
+      "type": "drag_and_drop_screen",
+      "payload": {
+        "start": {
+          "x": 1000,
+          "y": 100
+        },
+        "end": {
+          "x": 200,
+          "y": 100
+        }
+      }
+    },
     {
       "type": "save_field"
     },
@@ -75,19 +95,7 @@
       "payload": {
         "modal": "info"
       }
-    },
-    {
-      "type": "close_panel",
-      "payload": {
-        "modal": "minimap"
-      }
-    },
-    {
-      "type": "wait_for_removed",
-      "payload": {
-        "seconds": 1
-      }
-    },
+    },    
     {
       "type": "open_panel",
       "payload": {

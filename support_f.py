@@ -10,7 +10,6 @@ def wait_for_element(browser, by, value, timeout=10):
 def wait_for_clickable(browser, by, value, timeout=10):
      return WebDriverWait(browser, timeout).until(EC.element_to_be_clickable((by, value)))
 
-def wait_for_removed(seconds):
-     time.sleep(seconds)
+
 
 

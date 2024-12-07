@@ -1,7 +1,6 @@
 from game import *
 from lobby import *
 from game_panels import *
-from support_f import wait_for_removed
 import json
 
 
@@ -32,21 +31,26 @@ def execute_steps(browser, filename):
                     header_text_flag = data.get('header_text', "")
                     url_flag = data.get('image_url', "")
                     text_flag = data.get('text', "")
-                    create_turn(browser, turn_type, header_text=header_text_flag, url=url_flag, text=text_flag)
+                    create_turn(browser, turn_type, header_text=header_text_flag, text=text_flag, url=url_flag) 
 
                 elif turn_type == "video":
                     data = payload.get('data', {})
                     header_text_flag = data.get('header_text', "")
                     url_flag = data.get('video_url', "")
                     text_flag = data.get('text', "")
-                    create_turn(browser, turn_type, header_text=header_text_flag, url=url_flag, text=text_flag)
+                    create_turn(browser, turn_type, header_text=header_text_flag, text=text_flag, url=url_flag) 
 
                 else:
                     raise ValueError(f"Unexpected turn_type: {turn_type}")
                          
-            case "wait_for_removed":
-                seconds_sleep = payload.get('seconds', "")
-                wait_for_removed(seconds_sleep)
+            case "drag_and_drop_screen":
+                start = payload.get('start', {})
+                start_x = start.get('x', 0)  # Значение по умолчанию — 0
+                start_y = start.get('y', 0)
+                end = payload.get('end', {})
+                end_x = end.get('x', 0)
+                end_y = end.get('y', 0)
+                drag_and_drop_screen(browser, start_x, start_y, end_x, end_y)           
 
             
             case "save_field":

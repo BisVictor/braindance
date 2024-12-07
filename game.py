@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.action_chains import ActionChains
 
 
 from support_f import wait_for_element
@@ -45,7 +46,7 @@ panel_settings = {
     "minimap": [S_BTN_MINIMAP, S_BTN_MINIMAP_MAP_ICON],
 }
 
-def create_turn(browser, type, header_text, text, url=None): # тип хода, хэдер, url картинки/видео и текст  
+def create_turn(browser, type, header_text, text, url=None, sleep_after_create_turn=3): # тип хода, хэдер, url картинки/видео и текст
     turn_button = wait_for_clickable(browser, By.CSS_SELECTOR, S_BTN_ADD_TURN, timeout=10)     
     turn_button.click() 
     text_picture_button = wait_for_clickable(browser, By.CSS_SELECTOR, S_BTN_ADD_TEXT_PICTURE, timeout=5)     
@@ -66,9 +67,17 @@ def create_turn(browser, type, header_text, text, url=None): # тип хода, 
     text_input = browser.find_element(By.XPATH, X_TEXT_INPUT)
     text_input.click()
     text_input.send_keys(text)
-    save_button = wait_for_clickable(browser, By.CSS_SELECTOR, S_BTN_SAVE, timeout=5)
+    save_button = wait_for_clickable(browser, By.CSS_SELECTOR, S_BTN_SAVE, timeout=5)    
+    time.sleep(sleep_after_create_turn)
     save_button.click()
-   
+    time.sleep(sleep_after_create_turn)
+    
+
+def drag_and_drop_screen(browser, start_x, start_y, end_x, end_y):
+    actions = ActionChains(browser)    
+    actions.move_by_offset(start_x, start_y).click_and_hold()    
+    actions.move_by_offset(end_x - start_x, end_y - start_y)   
+    actions.release().perform()
 
 def save_field(browser):   
     save_field_button = wait_for_element(browser, By.CSS_SELECTOR, S_BTN_SAVE_FIELD, timeout=5)
@@ -77,6 +86,7 @@ def save_field(browser):
 def get_lobby(browser):
     lobby_button = wait_for_element(browser, By.CSS_SELECTOR, S_BTN_LOBBY, timeout=5)
     lobby_button.click()   
+
 
 
 
