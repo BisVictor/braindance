@@ -6,6 +6,9 @@ import json
 #from bs4 import BeautifulSoup
 import time
 
+from support_f import wait_for_element
+from support_f import wait_for_clickable
+
 #окно поиска
 S_SEARCH_WIKI='#searchInput'
 
@@ -15,22 +18,17 @@ S_SEARCH_BTN='#searchButton'
 #изображение "Физика"
 S_IMG_PHYSICS2 = '#mw-content-text > div.mw-content-ltr.mw-parser-output > table.infobox.infobox-6293bbd65e3d65bd > tbody > tr:nth-child(4) > td > span > span > a > img'
 
-
-
 START_URL = r'https://ru.wikipedia.org/wiki/%D0%97%D0%B0%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F_%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B0'
 EXPECTED_URL = r'https://ru.wikipedia.org/wiki/%D0%A4%D0%B8%D0%B7%D0%B8%D0%BA%D0%B0'
 
 SEARCH_OBJECT = 'физика'
-
-def wait_for_element(browser, by, value, timeout=10):
-    return WebDriverWait(browser, timeout).until(EC.presence_of_element_located((by, value)))
 
 with webdriver.Chrome() as browser:
     browser.get(START_URL)
     search = wait_for_element(browser, By.CSS_SELECTOR, S_SEARCH_WIKI)
     search.click()
     search.send_keys(SEARCH_OBJECT)
-    search_button = wait_for_element(browser, By.CSS_SELECTOR, S_SEARCH_BTN)
+    search_button = wait_for_clickable(browser, By.CSS_SELECTOR, S_SEARCH_BTN)
     search_button.click()
     if browser.current_url == EXPECTED_URL:
         print("Всё ОК. Мы на нужном URL")
