@@ -9,7 +9,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from dotenv import load_dotenv
 from steps import execute_steps
 from game import *
-from lobby import *
+from load/braidance/ import lobby
 
 import os
 

@@ -6,8 +6,8 @@ import json
 #from bs4 import BeautifulSoup
 import time
 
-from support_f import wait_for_element
-from support_f import wait_for_clickable
+from selenium_helpers import wait_for_element
+from selenium_helpers import wait_for_clickable
 
 #окно поиска
 S_SEARCH_WIKI='#searchInput'

@@ -8,8 +8,8 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 
 
-from support_f import wait_for_element
-from support_f import wait_for_clickable
+from selenium_helpers import wait_for_element
+from selenium_helpers import wait_for_clickable
 
 
 S_BTN_ADD_TURN = 'body > div.game-bg > div > div.position_bottom_right.actions.panel > button:nth-child(1)'
