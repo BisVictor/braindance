@@ -1,6 +1,6 @@
-from game import *
-from lobby import *
-from load.braindance.game_panels1 import *
+from load.braindance.game import *
+from load.braindance.lobby import *
+from load.braindance.game_panels import *
 import json
 
 

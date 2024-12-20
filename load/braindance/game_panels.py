@@ -6,8 +6,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
 import time
 
-from support_f import wait_for_clickable
-from support_f import wait_for_element
+from utils.selenium_helpers import wait_for_element
+from utils.selenium_helpers import wait_for_clickable
 
 def open_modal(browser, btn_selector, modal_selector, modal_name):    
     btn = wait_for_clickable(browser, By.CSS_SELECTOR, btn_selector, timeout=10)

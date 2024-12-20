@@ -7,8 +7,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-from support_f import wait_for_element
-from support_f import wait_for_clickable
+from utils.selenium_helpers import wait_for_element
+from utils.selenium_helpers import wait_for_clickable
 
 # URL
 BASE_URL = "https://test.braindance.space"

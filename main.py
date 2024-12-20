@@ -7,9 +7,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 from dotenv import load_dotenv
-from steps import execute_steps
-from game import *
-from load/braidance/ import lobby
+from load.braindance.steps import execute_steps
+from load.braindance.game import *
+from load.braindance.lobby import *
 
 import os
 
@@ -27,7 +27,7 @@ with webdriver.Chrome() as browser:
     #browser.get('https://braindance.space/game/view/57b')
     browser.set_window_size(1200, 800)  
     time.sleep(3)
-    execute_steps(browser, 'steps.json')
+    execute_steps(browser, r'load\braindance\steps.json')
     #create_turn(browser, 'picture', header_text, text, url)
     #create_game(browser, private_game=True, go_to_game=True)    
     #enter_game(browser, 'Victor', 'owner', skip=True)        
