@@ -52,4 +52,3 @@ def save_article(word, target_file):
         with open(target_file, 'w', encoding='utf-8') as json_file:
             json.dump(json_object, json_file, ensure_ascii=False, indent=4)
 
-save_article("физика", "wiki-data-1.json")

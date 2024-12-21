@@ -11,6 +11,7 @@ from load.braindance.steps import execute_steps
 from load.braindance.game import *
 from load.braindance.lobby import *
 
+
 import os
 
 load_dotenv()
@@ -22,19 +23,15 @@ BASE_URL = os.getenv('BASE_URL')
 #video_url = 'https://youtu.be/sLQLUed6izY?si=-zP4kRTx0QfJ1bUd'
 #text = 'Promo text. Selenium test'
 
+
+#save_article("физика", "wiki-data-2.json")
+
 with webdriver.Chrome() as browser:
     browser.get(BASE_URL)
     #browser.get('https://braindance.space/game/view/57b')
     browser.set_window_size(1200, 800)  
     time.sleep(3)
-    execute_steps(browser, r'load\braindance\steps.json')
-    #create_turn(browser, 'picture', header_text, text, url)
-    #create_game(browser, private_game=True, go_to_game=True)    
-    #enter_game(browser, 'Victor', 'owner', skip=True)        
-    #create_turn_picture(browser, header_text, image_url, text)    
-    #create_turn_video(browser, header_text, video_url, text)
-    #save_field(browser)
-    #get_lobby(browser)
+    execute_steps(browser, r'load\braindance\steps.json')   
     time.sleep(10)
 
 
