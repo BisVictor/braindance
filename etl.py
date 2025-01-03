@@ -6,13 +6,12 @@ import time
 
 from extract.wiki.wiki_article import get_article
 from transform.wiki_brain import from_wiki_articles_to_steps
-from transform.transform import wrap_with_game_creation
 from load.braindance.steps import execute_steps_with_data
-
+from load.braindance.steps import wrap_with_game_creation, execute_steps_with_data
 
 # todo: 4. реализовать функцию execute_steps_with_data аналогичную execute_steps,
 # но получающую массив данных вместо адреса файла
-#from load.braindance.steps import wrap_with_game_creation, execute_steps_with_data
+#
 
 load_dotenv()
 BASE_URL = os.getenv("BASE_URL")
