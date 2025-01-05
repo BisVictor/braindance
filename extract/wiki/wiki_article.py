@@ -16,12 +16,13 @@ S_SEARCH_WIKI='#searchInput'
 S_SEARCH_BTN='#searchButton'
 
 #изображение "Физика"
-S_IMG_PHYSICS2 = '#mw-content-text > div.mw-content-ltr.mw-parser-output > table.infobox.infobox-6293bbd65e3d65bd > tbody > tr:nth-child(4) > td > span > span > a > img'
-S_IMG_CHEMISTRY = '#mw-content-text > div.mw-content-ltr.mw-parser-output > table.infobox.infobox-8e97709d759b0da8 > tbody > tr:nth-child(4) > td > span > span > span > a > img'
+S_IMG = '.infobox tbody tr:nth-child(4) img'
+#изображение "Химия"
+#S_IMG_CHEMISTRY = '#mw-content-text > div.mw-content-ltr.mw-parser-output > table.infobox.infobox-8e97709d759b0da8 > tbody > tr:nth-child(4) > td > span > span > span > a > img'
 START_URL = r'https://ru.wikipedia.org/wiki/%D0%97%D0%B0%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F_%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B0'
 #ожидаемые страницы
 EXPECTED_URL_PHYSICS = r'https://ru.wikipedia.org/wiki/%D0%A4%D0%B8%D0%B7%D0%B8%D0%BA%D0%B0'
-EXPECTED_URL_CHEMISTRY = r'https://ru.wikipedia.org/wiki/%D0%A5%D0%B8%D0%BC%D0%B8%D1%8F'
+#EXPECTED_URL_CHEMISTRY = r'https://ru.wikipedia.org/wiki/%D0%A5%D0%B8%D0%BC%D0%B8%D1%8F'
 
 #SEARCH_OBJECT = 'физика'
 
@@ -33,7 +34,7 @@ def save_article(word, target_file):
         search.send_keys(word)
         search_button = wait_for_clickable(browser, By.CSS_SELECTOR, S_SEARCH_BTN)
         search_button.click()
-        if word == "Физика" or "физика":
+        if word.lower() == "физика":
             if browser.current_url == EXPECTED_URL_PHYSICS:
                 print("Всё ОК. Мы на нужном URL")
             else:
@@ -41,7 +42,7 @@ def save_article(word, target_file):
         article_title_element = wait_for_element(browser, By.TAG_NAME, "h1")
         article_title = article_title_element.text
         #print(article_title)    
-        image_element = wait_for_element(browser, By.CSS_SELECTOR, S_IMG_PHYSICS2)
+        image_element = wait_for_element(browser, By.CSS_SELECTOR, S_IMG)
         image_src = image_element.get_attribute("src")
         #print(image_src)
         paragraph_element = wait_for_element(browser, By.TAG_NAME, "p")    
@@ -64,28 +65,10 @@ def get_article(word):
         search.send_keys(word)
         search_button = wait_for_clickable(browser, By.CSS_SELECTOR, S_SEARCH_BTN)
         search_button.click()
-        if word.lower() == "физика":
-            if browser.current_url == EXPECTED_URL_PHYSICS:
-                print(f"Всё ОК. Мы на нужном URL, запрос {word}")
-            else:
-                print("Мы не на нужной странице! Это не физика")
-                
-        elif word.lower() == "химия":
-            if browser.current_url == EXPECTED_URL_CHEMISTRY:
-                print(f"Всё ОК. Мы на нужном URL, запрос {word}")
-            else:
-                print("Мы не на нужной странице! Это не химия")
-                print(browser.current_url)
-
         article_title_element = wait_for_element(browser, By.TAG_NAME, "h1")
         article_title = article_title_element.text
-        #print(article_title)
-        if word.lower() == "физика":
-            image_element = wait_for_element(browser, By.CSS_SELECTOR, S_IMG_PHYSICS2)
-            
-        elif word.lower() == "химия":
-            image_element = wait_for_element(browser, By.CSS_SELECTOR, S_IMG_CHEMISTRY)
-
+        #print(article_title)        
+        image_element = wait_for_element(browser, By.CSS_SELECTOR, S_IMG)        
         image_src = image_element.get_attribute("src")
         #print(image_src)
         paragraph_element = wait_for_element(browser, By.TAG_NAME, "p")    

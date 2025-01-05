@@ -165,8 +165,47 @@ step_save_field = {
       "type": "save_field"
     }
 
+drag_and_drop_step = {
+        "type": "drag_and_drop_screen",
+        "payload": {
+            "start": {
+                "x": 900,
+                "y": 100
+            },
+            "end": {
+                "x": 50,
+                "y": 100
+            }
+        }
+    }
+
+close_minimap = {
+      "type": "close_panel",
+      "payload": {
+        "modal": "minimap"
+      }
+    }
+
+
 def wrap_with_game_creation(steps):
     steps.insert(0, step_enter_game)
     steps.insert(0, step_create_game)
     steps.append(step_save_field)
     return steps
+
+def insert_moves(steps):
+    temp_steps = []
+    first_move = True
+    for i in range (len(steps) - 1):
+        temp_steps.append(steps[i])
+        if i < len(steps) - 1 and steps[i]["type"] == "create_turn" and steps[i + 1]["type"] == "create_turn":
+            temp_steps.append(drag_and_drop_step)
+            if first_move:
+                temp_steps.append(close_minimap)
+                first_move = False     
+    return temp_steps
+
+
+
+
+

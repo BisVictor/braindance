@@ -7,11 +7,8 @@ import time
 from extract.wiki.wiki_article import get_article
 from transform.wiki_brain import from_wiki_articles_to_steps
 from load.braindance.steps import execute_steps_with_data
-from load.braindance.steps import wrap_with_game_creation, execute_steps_with_data
+from load.braindance.steps import wrap_with_game_creation, execute_steps_with_data, insert_moves
 
-# todo: 4. реализовать функцию execute_steps_with_data аналогичную execute_steps,
-# но получающую массив данных вместо адреса файла
-#
 
 load_dotenv()
 BASE_URL = os.getenv("BASE_URL")
@@ -23,11 +20,14 @@ with webdriver.Chrome() as browser:
     articles = []
     articles.append(get_article("физика"))
     articles.append(get_article("химия"))
+    articles.append(get_article("география"))
     
     #print(articles)
     turn_steps = from_wiki_articles_to_steps(articles)
     #print(turn_steps)
     steps = wrap_with_game_creation(turn_steps)
     #print(steps)
-    execute_steps_with_data(browser, steps)
+    steps_and_moves = insert_moves(steps)
+    #print(steps_and_moves)
+    execute_steps_with_data(browser, steps_and_moves)
     time.sleep(15)
