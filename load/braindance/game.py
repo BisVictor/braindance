@@ -81,6 +81,7 @@ def drag_and_drop_screen(browser, start_x, start_y, end_x, end_y):
 def save_field(browser):   
     save_field_button = wait_for_element(browser, By.CSS_SELECTOR, S_BTN_SAVE_FIELD, timeout=5)
     save_field_button.click()
+    print("Окно сохранено")
 
 def get_lobby(browser):
     lobby_button = wait_for_element(browser, By.CSS_SELECTOR, S_BTN_LOBBY, timeout=5)
