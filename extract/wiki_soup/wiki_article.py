@@ -5,19 +5,17 @@ import re
 
 url = "https://ru.wikipedia.org/wiki/"
 
-#encoded_word = urllib.parse.quote(word)
-
-word = input()
+#word = input()
 #word = "физика"
 encoding_word = urllib.parse.quote(word)
 
 response = requests.get(url+encoding_word)
-#print(response)
-#print(response.text)
+
 src_image = None
+
 soup = BeautifulSoup(response.text, 'html.parser')
 title = soup.find(class_="mw-page-title-main")
-p = soup.find('p')
+first_paragraph = soup.find('p')
 table = soup.find('table', class_=lambda x: x and x.startswith('infobox infobox-'))
 if table:
     image = table.find('img')
@@ -29,6 +27,6 @@ if table:
 
 
 print(title.text)
-print(p.text)
+print(first_paragraph.text)
 if src_image:
     print(src_image)
