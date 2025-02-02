@@ -5,7 +5,7 @@ import time
 
 
 #from extract.wiki.wiki_article import get_article
-from extract.google_api.google_article import get_article
+from extract.google_api.google_books import get_article
 from transform.wiki_brain import from_wiki_articles_to_steps
 from load.braindance.steps import execute_steps_with_data
 from load.braindance.steps import wrap_with_game_creation, execute_steps_with_data, insert_moves
