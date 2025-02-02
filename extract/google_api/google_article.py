@@ -6,19 +6,31 @@ load_dotenv()
 
 GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
 
-service = build('books', 'v1', developerKey=GOOGLE_API_KEY)
+def get_article(word):
+    try:        
+        service = build('books', 'v1', developerKey=GOOGLE_API_KEY)
+        results = service.volumes().list(q=word, maxResults=1).execute()
+        if 'items' not in results:
+            print("По вашему запросу ничего не найдено.")
+            return
+        item = results['items'][0]
+        volume_info = item.get('volumeInfo', {})
+        
+        # Извлекаем данные
+        title = volume_info.get('title', 'Нет названия')
+        description = volume_info.get('description', 'Описание отсутствует')
+        info_link = volume_info.get('infoLink', 'Нет ссылки')
+        image_links = volume_info.get('imageLinks', {})
+        image_src = image_links.get('thumbnail', 'Нет изображения')  
+        text = (f"Описание: {description} Ссылка: {info_link}")         
 
-query = "Физика. Учебник"
-results = service.volumes().list(q=query, maxResults=1).execute()
+        json_object = {"title": title,
+                        "img_src": image_src,
+                        "text": text}   
+    except:
+        print("Ошибка выполнения функции")
+    
+    #print(json_object)
+    return json_object
+    
 
-for item in results.get('items', []):
-    volume_info = item.get('volumeInfo', {})
-    title = volume_info.get('title', 'Нет названия')
-    authors = ', '.join(volume_info.get('authors', ['Автор неизвестен']))
-    print(f"Название: {title}")
-    print(f"Авторы: {authors}")
-    print(f"Ссылка: {volume_info.get('infoLink', 'Нет ссылки')}")
-    image_links = volume_info.get('imageLinks', {})
-    thumbnail = image_links.get('thumbnail', 'Нет ссылки')
-    print(f"Изображение: {thumbnail}")
-    print('---')
