@@ -20,8 +20,9 @@ with webdriver.Chrome() as browser:
     browser.set_window_size(1400, 800)
     
     articles = []    
-    articles.append(get_article("AAV physics"))
+    articles.append(get_article("AAV physics")) #for bio_py.bio_article
     #articles.append(get_article("химия"))
+    #articles.append(get_article("Физика"))
     #articles.append(get_article("география"))    
     
     #print(articles)
