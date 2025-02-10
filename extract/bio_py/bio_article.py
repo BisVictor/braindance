@@ -4,7 +4,7 @@ import os
 
 load_dotenv()
 
-EMAIL = os.load_dotenv('EMAIL')
+EMAIL = os.getenv("EMAIL")
 
 
 def get_article(word):
@@ -22,6 +22,8 @@ def get_article(word):
     article_doi = records["PubmedArticle"][0]["PubmedData"]["ArticleIdList"][1]
 
     json_object = {"title": article_title,
-                        "img_src": None,
-                        "text": f"{article_abstract} DOI:{article_doi}"}   
+                    "img_src": "N/A",
+                    "text": f"{article_abstract} DOI:{article_doi}"}   
+    #print(json_object)
     return json_object
+
