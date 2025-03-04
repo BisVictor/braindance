@@ -21,7 +21,7 @@ def get_article(word):
         description = volume_info.get('description', 'Описание отсутствует')
         info_link = volume_info.get('infoLink', 'Нет ссылки')
         image_links = volume_info.get('imageLinks', {})
-        image_src = image_links.get('thumbnail', 'Нет изображения')  
+        image_src = image_links.get('thumbnail', '')  
         text = (f"Описание: {description} Ссылка: {info_link}")         
 
         json_object = {"title": title,

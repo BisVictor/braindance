@@ -22,7 +22,7 @@ def get_article(word):
     article_doi = records["PubmedArticle"][0]["PubmedData"]["ArticleIdList"][1]
 
     json_object = {"title": article_title,
-                    "img_src": "N/A",
+                    "img_src": "",
                     "text": f"{article_abstract} DOI:{article_doi}"}   
     #print(json_object)
     return json_object
