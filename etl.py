@@ -10,6 +10,7 @@ from extract.wiki.wiki_article import get_article
 from transform.wiki_brain import from_wiki_articles_to_steps
 from load.braindance.steps import execute_steps_with_data
 from load.braindance.steps import wrap_with_game_creation, execute_steps_with_data, insert_moves
+from load.postgre_insert_content import insert_content
 
 
 load_dotenv()
@@ -23,15 +24,16 @@ with webdriver.Chrome() as browser:
     #articles.append(get_article("AAV physics")) #for bio_py.bio_article
     articles.append(get_article("химия"))
     #articles.append(get_article("Физика"))
-    #articles.append(get_article("география"))    
-    
+    #articles.append(get_article("география"))   
+    for content in articles:
+        insert_content(articles)
     #print(articles)
-    turn_steps = from_wiki_articles_to_steps(articles)
+   # turn_steps = from_wiki_articles_to_steps(articles)
     #print(turn_steps)
-    steps = wrap_with_game_creation(turn_steps)
+   # steps = wrap_with_game_creation(turn_steps)
     #print(steps)
-    steps_and_moves = insert_moves(steps)
-    print(steps_and_moves)
-    execute_steps_with_data(browser, steps_and_moves)
+   # steps_and_moves = insert_moves(steps)
+   # print(steps_and_moves)
+  # execute_steps_with_data(browser, steps_and_moves)
     time.sleep(15)
     

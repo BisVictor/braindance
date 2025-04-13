@@ -1,10 +1,10 @@
 CREATE TABLE IF NOT EXISTS content (
     id SERIAL PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
-    image VARCHAR(50) NOT NULL,
-    text VARCHAR(1000) NOT NULL
+    image TEXT NOT NULL,
+    text TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);   
+); 
 
 INSERT INTO content (title, image, text) VALUES
 (
